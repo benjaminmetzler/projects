@@ -1,28 +1,31 @@
+![PTT](./PTT1.png)
 
-####Introduction
-I'm spending a lot of times in virtual meetings while in isolation.  Apps like Teams and Zoom offer a way to connect with my co-workers during this time.  One on one that's fine, but during meetings I mute my microphone to keep others from hearing about my dog barking or some other sound.  
+#### Introduction
+During this whole corona-virus/isolation period, I'm spending a lot of time in virtual meetings.  Apps like Teams and Zoom offer a way to connect with my co-workers.  
 
-I picked up an app called [Talk Toggle](https://www.microsoft.com/en-us/p/talk-toggle/9nrjcs6g10kt#activetab=pivot:overviewtab) as it provides a system wide mute.  I set it to recognize F24 as its hotkey and then remapped capslock and menu key to send F24 with [AutoHotKey](https://www.autohotkey.com/).  
+For one-on-one meetings an open mic is fine but during group meetings I keep my mic muted unless I’m talking. This keeps my background noise from interrupting the speaker and is generally good form in group meetings.
 
-All that done I had a passing "push-to-talk" setup, but I kept forgetting to press the keyboard when I wanted to talk.  I realized that I needed something I could hold in my hands to force me to remember to press it.  A quick google and I saw that there were options but they all cost more then I wanted to pay or they didn't work like I wanted.  I decided to build my own PTT solution.
+I picked up an app called [Talk Toggle](https://www.microsoft.com/en-us/p/talk-toggle/9nrjcs6g10kt#activetab=pivot:overviewtab) to provide system wide Push-To-Talk functionality and set it to recognize F24 as its hotkey and remapped the menu key to send F24 with [AutoHotKey](https://www.autohotkey.com/).  
 
-####Shopping List
+While I had a passing "push-to-talk" setup I kept forgetting to press the unmute hotkey when I started talking.  I needed something I could hold in my hands to force as a reminder.  A quick google and I saw that there were options but they all cost more then I wanted to pay or didn't work like I wanted.  I decided to build my own PTT solution.
+
+#### Shopping List
 1. [Handheld push button](https://www.ebay.com/itm/122657808383)
 1. [Teensey USB Development Board (with pins)](https://www.pjrc.com/store/teensy_pins.html)
-1. USB Cable - A-Male to Mini-B Cord.  The first one I tried was a "charger only" type.  Forturnately I had another.
-1. Miscellanious wires.  I used an broken USB-C cable and some extra jumper wires I had laying around.
+1. [USB Cable - A-Male to Mini-B Cord](https://www.pjrc.com/store/cable_usb_micro_b.html)
+1. Miscellaneous wires.  I used an broken USB-C cable and some wires I had laying around.
 1. [Heat shrink tube](https://www.amazon.com/560PCS-Heat-Shrink-Tubing-Eventronic/dp/B072PCQ2LW)
 
-####Assembly
-Connect the handheld push button to pins `B1` and `GND`.  I used jumper wires to avoid soldering to the teensy board.  Tie a knot in the cable near the push button to avoid pulling on the solder joints.
+#### Assembly
+Connect wires between the handheld push button poles and  pins `B1` and `GND`.  This is a simple switch so it doesn't matter which wire is connected to which pin.  I used a breadboard and some jumper wires to avoid soldering to the teensy board.  Heat shrink up any soldered wires too keep things safe and looking clean. 
 
-####Miscellanious links:
+#### Miscellanious links
+1. [Inspiration](https://timmyomahony.com/blog/making-usb-push-buttons/)
+1. [Parts](https://www.pjrc.com/teensy/td_keyboard.html)
 
-1. [link](https://www.pjrc.com/teensy/td_keyboard.html)
-1. [link](https://timmyomahony.com/blog/making-usb-push-buttons/)
+#### Code
+Start up [Teensyduino](https://www.pjrc.com/teensy/td_download.html) and load the below code onto the teensy.  It will detect when B1 is closed and will press `F24`.  With the above Talk Toggle, this will unmute the mics.  Release the PTT button and the teensy will release `F24`, reactivating mic mute.
 
-####Code
-Start up [Teensyduino](https://www.pjrc.com/teensy/td_download.html) and load the below code onto the teensy.  It will 
 ````c
 #include <Bounce.h>
 
@@ -48,3 +51,6 @@ void loop() {
   }
 }
 ````
+
+#### Next Steps
+Using the teensy for this project is a bit of overkill but I have plans.  I am going to make a macro-keyboard, similar to the [DIY Stream Deck](https://www.partsnotincluded.com/diy-stream-deck-mini-macro-keyboard/).  With it I will be able to switch between [OBS](https://obsproject.com/) streams and enable notification lights.
