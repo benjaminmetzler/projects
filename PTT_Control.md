@@ -11,7 +11,7 @@ While I had a passing "push-to-talk" setup I kept forgetting to press the unmute
 
 #### Shopping List
 1. [Handheld push button](https://www.ebay.com/itm/122657808383)
-1. [Teensey USB Development Board (with pins)](https://www.pjrc.com/store/teensy_pins.html)
+1. [Teensy USB Development Board (with pins)](https://www.pjrc.com/store/teensy_pins.html)
 1. [USB Cable - A-Male to Mini-B Cord](https://www.pjrc.com/store/cable_usb_micro_b.html)
 1. Miscellaneous wires.  I used an broken USB-C cable and some wires I had laying around.
 1. [Heat shrink tube](https://www.amazon.com/560PCS-Heat-Shrink-Tubing-Eventronic/dp/B072PCQ2LW)
