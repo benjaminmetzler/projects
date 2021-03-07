@@ -10,7 +10,7 @@ I picked up an app called [Talk Toggle](https://www.microsoft.com/en-us/p/talk-t
 While I had a passing "push-to-talk" setup I kept forgetting to press the unmute hotkey when I started talking.  I needed something I could hold in my hands to force as a reminder.  A quick google and I saw that there were options but they all cost more then I wanted to pay or didn't work like I wanted.  So I decided to build my own PTT solution.
 
 ## Shopping List
-1. [Handheld push button](https://www.ebay.com/itm/122657808383)
+1. [Handheld push button](https://www.ebay.com/itm/122657808383) - I use the Philmore 30-825, but any momentary switch will work.
 1. Any microcontroller that can emulate an HID will work.  Two options code below are:
    1. [Teensy USB Development Board (with pins)](https://www.pjrc.com/store/teensy_pins.html)
    1. [Raspberry Pi Pico](https://www.raspberrypi.org/products/raspberry-pi-pico/)
@@ -102,7 +102,8 @@ while True:
 Using the teensy or pico for this project is a bit of overkill.  I am planning on making a macro-keyboard, similar to the [DIY Stream Deck](https://www.partsnotincluded.com/diy-stream-deck-mini-macro-keyboard/).  With it I will be able to switch between [OBS](https://obsproject.com/) streams and enable notification lights.
 
 #### Miscellaneous links
-1. [Inspiration](https://timmyomahony.com/blog/making-usb-push-buttons/)
-1. [Parts](https://www.pjrc.com/teensy/td_keyboard.html)
-1. [Using with Pico](https://hridaybarot.home.blog/2021/01/31/using-raspberry-pi-pico-has-hid-device-to-control-mouse-and-keyboard/)
-2. [DIY Macro Keyboard video](https://www.youtube.com/watch?v=aEWptdD32iA) - Helped my craft my code for the pico.
+1. [Original Inspiration](https://timmyomahony.com/blog/making-usb-push-buttons/)
+1. [Helped me code the Teensy](https://www.pjrc.com/teensy/td_keyboard.html)
+1. [Using Pico as an HID](https://hridaybarot.home.blog/2021/01/31/using-raspberry-pi-pico-has-hid-device-to-control-mouse-and-keyboard/) - Provided a good basis for using the pico as an HID.
+1. [DIY Macro Keyboard video](https://www.youtube.com/watch?v=aEWptdD32iA) - Helped my craft my code for the pico.
+1. [Pico StreamDeck](https://github.com/pjgpetecodes/pico-streamdeck) - Well this just looks cool.
