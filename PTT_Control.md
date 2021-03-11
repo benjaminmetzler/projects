@@ -11,7 +11,7 @@ While I had a passing "push-to-talk" setup I kept forgetting to press the PTT ho
 
 ## Shopping List
 1. [Handheld push button](https://www.ebay.com/itm/122657808383) - I use the Philmore 30-825, but any momentary switch will work.
-1. Any micro-controller that can emulate an HID will work.  Two options code below are:
+1. Any micro-controller that can emulate an HID will work.  Two options are:
    1. [Teensy USB Development Board (with pins)](https://www.pjrc.com/store/teensy_pins.html)
    1. [Raspberry Pi Pico](https://www.raspberrypi.org/products/raspberry-pi-pico/)
 1. [USB Cable - A-Male to Mini-B Cord](https://www.pjrc.com/store/cable_usb_micro_b.html)
@@ -40,12 +40,14 @@ void loop() {
  
   buttonPTT.update();
 
-  // Map PTT to F24
+  // When the button is pushed, send F13 down
   if (buttonPTT.fallingEdge()) {
     Keyboard.press(KEY_F13);  
     digitalWrite(PIN_D6, HIGH); // LED ON
   }
-  if(buttonPTT.risingEdge()){
+  
+  // When the button is release, send F13 release
+  if(buttonPTT.risingEdge()) {
     Keyboard.release(KEY_F13);
     digitalWrite(PIN_D6, LOW); // LED OFF
   }
