@@ -11,6 +11,7 @@ While I had a passing "push-to-talk" setup I kept forgetting to press the PTT ho
 
 ## Shopping List
 1. [Handheld push button](https://www.ebay.com/itm/122657808383) - I use the Philmore 30-825, but any momentary switch will work.
+   1. I recently added a [Linemaster T-91-S](https://linemaster.com/product/378/Treadlite-Ii/T-91-S/) foot pedel that works well.
 1. Any micro-controller that can emulate an HID will work.  Two options are:
    1. [Teensy USB Development Board (with pins)](https://www.pjrc.com/store/teensy_pins.html)
    1. [Raspberry Pi Pico](https://www.raspberrypi.org/products/raspberry-pi-pico/)
