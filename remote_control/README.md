@@ -47,4 +47,6 @@ It's not exactly what I want for a remote, but it does RF and can act like a key
 ## Links
 * https://globalcache.zendesk.com/hc/en-us/articles/360034968311-iConvert-Converting-IR-code-formats
 * https://www.instructables.com/Transforming-Raspberry-Pi-Into-a-Remote-Control/
+* https://projects-raspberry.com/emulate-a-bluetooth-keyboard-with-the-raspberry-pi/
+
 
