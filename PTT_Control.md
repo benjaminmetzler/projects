@@ -1,7 +1,7 @@
 ![PTT](./PTT1.png)
 
 ## Introduction
-I'm spending a lot of time in virtual meetings due to COVID.  Apps like Teams and Zoom offer a way to connect with my co-workers.  
+I'm spending a lot of time in virtual meetings due to COVID.  Apps like Teams and Zoom offer a way to connect with my co-workers.
 
 For one-on-one meetings an open mic is fine but during group meetings I keep my mic muted unless I’m talking. This keeps my background noise from interrupting the speaker and is generally good form in group meetings.
 
@@ -22,10 +22,10 @@ While I had a passing "push-to-talk" setup I kept forgetting to press the PTT ho
 ## Building with the Teensy
 
 ### Assembly
-Connect wires between the handheld push button poles and  pins `B1` and `GND`.  This is a simple switch so it doesn't matter which wire is connected to which pin.  I used a breadboard and some jumper wires to avoid soldering to the teensy board.  Heat shrink up any soldered wires too keep things safe and looking clean. 
+Connect wires between the handheld push button poles and  pins `B1` and `GND`.  This is a simple switch so it doesn't matter which wire is connected to which pin.  I used a breadboard and some jumper wires to avoid soldering to the teensy board.  Heat shrink up any soldered wires too keep things safe and looking clean.
 
-### Code 
-Start up [Teensy](https://www.pjrc.com/teensy/td_download.html) and load the below code onto the teensy.  It will detect when B1 is closed and will press `F13`.  With the above Talk Toggle or MuteKey, pressing the `F13` will unmute the mics.  Release the PTT button and the teensy will release `F13`, reactivating mic mute.
+### Code
+Start up [Teensy](https://www.pjrc.com/teensy/td_download.html) and load the below code onto the teensy.  It will detect when B1 is closed and will press `ALT+SPACE`.  With the above Talk Toggle or MuteKey, pressing the `ALT+SPACE` will unmute the mics.  Release the PTT button and the teensy will release `ALT+SPACE`, reactivating mic mute.
 
 ````c
 #include <Bounce.h>
@@ -38,18 +38,20 @@ void setup() {
 }
 
 void loop() {
- 
+
   buttonPTT.update();
 
-  // When the button is pushed, send F13 down
+  // When the button is pushed, send ALT+SPACE down
   if (buttonPTT.fallingEdge()) {
-    Keyboard.press(KEY_F13);  
+    Keyboard.press(MODIFIERKEY_ALT);
+    Keyboard.press(KEY_SPACE);
     digitalWrite(PIN_D6, HIGH); // LED ON
   }
-  
-  // When the button is release, send F13 release
+
+  // When the button is release, send ALT+SPACE release
   if(buttonPTT.risingEdge()) {
-    Keyboard.release(KEY_F13);
+    Keyboard.release(MODIFIERKEY_ALT);
+    Keyboard.release(KEY_SPACE);
     digitalWrite(PIN_D6, LOW); // LED OFF
   }
 }
@@ -58,8 +60,8 @@ void loop() {
 ## Building with the Raspberry Pi Pico
 At $4 US, these are cheap MPC drive the cost of the project to less then $20 (slightly more than the cost of the Teensy alone).  My main reluctance in using the pico is that HID emulation [is currently not supported](https://github.com/micropython/micropython/issues/6811) in the [MicroPython](https://micropython.org/).  Instead I use [CircuitPython](https://circuitpython.org/) to emulate a keyboard with the [Adafruit HID library](https://github.com/adafruit/Adafruit_CircuitPython_HID).  CircuitPython (as of 2021-03-06) shows up as a USB drive when plugged in which makes for easy code editing but some companies have strict no-USB drive policy on company laptops.  As a result the pico option is not as widely usable as the Teensy which just shows up as a keyboard.
 
-### Assembly 
-Connect wires between the handheld push button poles and pins `GP15` and `3v3`.  This is a simple switch so it doesn't matter which wire is connected to which pin.  I used a breadboard and some jumper wires to avoid soldering to the pico board.  Heat shrink up any soldered wires too keep things safe and looking clean. 
+### Assembly
+Connect wires between the handheld push button poles and pins `GP15` and `3v3`.  This is a simple switch so it doesn't matter which wire is connected to which pin.  I used a breadboard and some jumper wires to avoid soldering to the pico board.  Heat shrink up any soldered wires too keep things safe and looking clean.
 
 ### Code
 1. Download [CircuitPython](https://circuitpython.org/board/raspberry_pi_pico/).  Select the UF2 and then install it on the pico.  The pico will reboot after copying the UF2 file over.  When it comes up, the pico will be accessable via the file browser.
